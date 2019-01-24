@@ -83,6 +83,7 @@
   width:100%;
   transform: translateY(-50%);
   text-align: center;
+  animation: fadeIn 3s ease-in;
 }
 
 .Form-container h1 {
@@ -93,4 +94,34 @@
 
 .Form-container h1 span {
   color: #72BDA3;
+  font-weight: 400;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.Result-div {
+  position:absolute;
+  top:50%;
+  width:100%;
+  transform: translateY(-50%);
+  animation: fadeIn 3s ease-in;
+}
+
+.Result-heading {
+  text-transform: uppercase;
+  font-weight: 300;
+  text-align: center;
+  letter-spacing: .4rem;
+}
+
+.Result-heading span {
+  color:#72BDA3;
+  font-weight: 400;
 }

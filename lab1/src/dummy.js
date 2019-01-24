@@ -13,6 +13,21 @@ function whatToDisplay() {
 
 }
 
+function loginForm() {
+  return (
+  <form onSubmit={this.handleSubmit} className="Form-container">
+    <h1>Hello World <span>React</span> App</h1>
+    <label>
+      <span className="Form-text-sub">Designed by Arjun Patel</span>
+      <span className="Form-text">Please Enter Your Name To Get Started</span>
+      <input type="text" className={inputClass} value={this.state.value} onChange={this.handleChange} />
+      <span className="Form-error">{errorCode}</span>
+    </label>
+    <input className={visibleButton} type="submit" value="Let's Go" />
+  </form>
+  );
+}
+
 // Define Component
 class NameForm extends React.Component {
       constructor(props) {
@@ -26,6 +41,7 @@ class NameForm extends React.Component {
       // Handle Form Validation
       handleChange(event) {
         this.setState({value: event.target.value});
+        userName = this.state.value;
 
         // Check to see that only letters and spaces are used
         if (letterSpaceOnly.test(this.state.value) == false) {
@@ -42,6 +58,15 @@ class NameForm extends React.Component {
 
       // Handle Form Submission
       handleSubmit(event) {
+        // Define Username Variable
+        userName = this.state.value;
+
+        // Make sure function is working
+        //alert('A name was submitted: ',   this.state.value);
+
+        // preventDefault
+        event.preventDefault();
+
         // Check to make sure field is filled out
         if (!this.state.value) {
           alert('Name cannot be left blank.');
@@ -57,39 +82,24 @@ class NameForm extends React.Component {
         }
 
         else {
-          userName = this.state.value;
-          //alert('Welcome ' + userName);
-          this.forceUpdate();
+          alert('Welcome ' + userName);
         }
-
-        // preventDefault
-        event.preventDefault();
       }
 
       render() {
-        if (this.state.value == userName) {
-          // Return Form
-          return (
-            <div className="Result-div">
-              <h1 className="Result-heading">Thank you for joining <span>{userName}</span></h1>
-            </div>
-          )
-        }
-        else {
-          // Return Greeting
-          return(
-            <form onSubmit={this.handleSubmit} className="Form-container">
-              <h1>Hello World <span>React</span> App</h1>
-              <label>
-                <span className="Form-text-sub">Designed by Arjun Patel</span>
-                <span className="Form-text">Please Enter Your Name To Get Started</span>
-                <input type="text" className={inputClass} value={this.state.value} onChange={this.handleChange} />
-                <span className="Form-error">{errorCode}</span>
-              </label>
-              <input className={visibleButton} type="submit" value="Let's Go" />
-            </form>
-          )
-        }
+        return (
+
+          <form onSubmit={this.handleSubmit} className="Form-container">
+            <h1>Hello World <span>React</span> App</h1>
+            <label>
+              <span className="Form-text-sub">Designed by Arjun Patel</span>
+              <span className="Form-text">Please Enter Your Name To Get Started</span>
+              <input type="text" className={inputClass} value={this.state.value} onChange={this.handleChange} />
+              <span className="Form-error">{errorCode}</span>
+            </label>
+            <input className={visibleButton} type="submit" value="Let's Go" />
+          </form>
+        );
       }
     }
 
