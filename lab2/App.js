@@ -124,7 +124,7 @@ export default class App extends React.Component {
         <ImageBackground source={require('./assets/bg.jpg')} imageStyle={{resizeMode: 'cover'}} style={styles.backgroundImg}>
           <FadeInView style={{width: '100%', height: '100%'}}>
             <View style={styles.container}>
-              <Text style={styles.title}>REACT <Text style={styles.spantitle}>NATIVE</Text> APP</Text>
+              <Text style={styles.title}>react <Text style={styles.spantitle}>native</Text> app</Text>
               <Text style={styles.subtitle}>DESIGNED BY ARJUN PATEL</Text>
               <Text style={[styles.instructions, greetingStyle]}>{greeting}</Text>
 
@@ -153,7 +153,6 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   title: {
-    textTransform: 'lowercase',
     letterSpacing: 3,
     marginBottom: 15,
     fontSize: 28,
@@ -201,9 +200,6 @@ const styles = StyleSheet.create({
     borderColor: 'red',
   },
   submit: {
-    borderRadius: 8,
-    borderWidth: 0.5,
-    borderColor: '#72BDA3',
     paddingTop: 10,
     paddingBottom: 10,
     paddingRight: 40,
