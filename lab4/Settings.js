@@ -7,38 +7,6 @@ class Settings extends React.Component {
     title: 'Settings',
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      fahrenheit: '',
-      celsius: '',
-      temp: '',
-    };
-  }
-
-
-  setMetric(fahrenheit) {
-    this.setState({ fahrenheit });
-  }
-
-  f2c(){
-    const intTemperature = parseInt(this.state.temp, 10);
-    var c = String(Math.round(((intTemperature * 9 / 5) + 32)));
-    return c;
-    this.setState({c});
-    console.log(celsius);
-  }
-
-  converter = (fahrenheit) => {
-    const intTemperature = parseInt(this.state.temp, 10);
-    if (fahrenheit) {
-      var celsius = String(Math.round(((intTemperature * 9 / 5) + 32)));
-      return celsius;
-      console.log(celsius);
-    }
-    return String(Math.round(intTemperature - 273.15));
-  }
-
   render() {
     const { fahrenheit } = this.state;
     const { celsius } = this.state;
