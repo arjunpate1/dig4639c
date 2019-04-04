@@ -4,6 +4,7 @@ import {
   Text,
   View,
   TextInput,
+  ScrollView,
   AsyncStorage
 } from "react-native";
 import Button from "./Button";
@@ -28,7 +29,7 @@ class WeatherProject extends Component {
     this.state = { forecast: null };
   }
 
-    
+
   checkMultiPermissions = async() => {
     const { Permissions, FileSystem } = Expo;
     console.log(FileSystem.documentDirectory);
@@ -63,8 +64,8 @@ class WeatherProject extends Component {
             }
           }
       }
-      
-  }      
+
+  }
   _retrieveData = async () => {
       console.log("Retrieving Data");
         try {
@@ -84,6 +85,27 @@ class WeatherProject extends Component {
       }
 
   componentDidMount() {
+
+  setInterval( () => {
+    this.setState({
+      curTime : new Date().toLocaleString()
+    })
+  },1000)
+
+  navigator.geolocation.getCurrentPosition(
+    initialPosition => {
+      this._getForecastForCoords(
+        initialPosition.coords.latitude,
+        initialPosition.coords.longitude
+      );
+    },
+    error => {
+      alert(error.message);
+    },
+    { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+  );
+
+
     AsyncStorage
       .getItem(STORAGE_KEY)
       .then(value => {
@@ -138,28 +160,39 @@ class WeatherProject extends Component {
     return (
       <PhotoBackdrop image={this.state.newPostImage} >
         <View style={styles.overlay}>
-          <View style={styles.row}>
-            <Text style={textStyles.mainText}>
-              Forecast for
-            </Text>
+        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+            <View style={styles.row}>
+              <Text style={textStyles.mainText}>
+                Forecast for
+              </Text>
 
-            <View style={styles.zipContainer}>
-              <TextInput
-                style={[textStyles.mainText, styles.zipCode]}
-                onSubmitEditing={this._handleTextChange}
-                underlineColorAndroid="transparent"
-              />
+              <View style={styles.zipContainer}>
+                <TextInput
+                  style={[textStyles.mainText, styles.zipCode]}
+                  onSubmitEditing={this._handleTextChange}
+                  underlineColorAndroid="transparent"
+                />
+              </View>
             </View>
-          </View>
+            {content}
+            <View style={styles.row}>
+              <Text style={styles.date}>{this.state.curTime}</Text>
+            </View>
+            <View style={styles.row}>
+              <LocationButton onGetCoords={this._getForecastForCoords} />
+            </View>
+            <View style={styles.row}>
+              <Button onPress={this.checkMultiPermissions} label="Choose Image"></Button>
+            </View>
 
-          <View style={styles.row}>
-            <LocationButton onGetCoords={this._getForecastForCoords} />
-          </View>
-          <View style={styles.row}>
-            <Button onPress={this.checkMultiPermissions} label="Choose Image"></Button>
-          </View>
-          {content}
-
+            <View style={styles.row}>
+              <Button
+                label="Settings"
+                onPress={() =>
+                  this.props.navigation.navigate('Settings')
+                }/>
+            </View>
+          </ScrollView>
         </View>
       </PhotoBackdrop>
     );
@@ -184,7 +217,12 @@ const styles = StyleSheet.create({
     height: textStyles.baseFontSize * 2,
     justifyContent: "flex-end"
   },
-  zipCode: { flex: 1 }
+  zipCode: { flex: 1 },
+  date:{
+    justifyContent: "center",
+    color: "#FFFFFF",
+    fontSize: 24
+  }
 });
 
 export default WeatherProject;

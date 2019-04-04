@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import WeatherProject from './weather_project.1';
+import WeatherProject from './weather_project';
+import AppNavigator from './AppNavigator';
 export default class App extends React.Component {
   render() {
     return (
-      <WeatherProject />
+      <AppNavigator />
     );
   }
 }
