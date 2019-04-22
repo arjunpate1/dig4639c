@@ -25,7 +25,7 @@ export default class HomeScreen extends React.Component {
       <UnSplashScreen
         clientId="2e819e7fa0e667b9aa9c8752ac2a4d01c24e5e72c854c3ac39f5cdd34353e4c2"
         logoText="Arjun" // defaults to 'MyApp'
-        quoteText ='"This is a sample inspirational quote"'
+        quoteText ='"Nothing will bring you peace, you must bring yourself to it."'
       />
 
       /*
