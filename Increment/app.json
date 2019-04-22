@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Arjun Patel Lab 3",
-    "slug": "lab3",
+    "name": "Increment",
+    "slug": "Increment",
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "platforms": [
